@@ -164,14 +164,12 @@ if __name__ == "__main__":
     superpouvoir = 0  # Var superpouvoir init à 0 comme désact
 
     if age >= 12:
-
         try:
             choix = input(pink_text("Appuyez sur J pour jouer ou Q pour quitter la partie")).upper()
         except:
             print("La valeur entrée est incorecte")
 
         if choix == "J":
-
             gum = 0
             ennemy = 0
             while True:
@@ -254,10 +252,7 @@ if __name__ == "__main__":
                 else:
                     print(debug_text('Quelque chose est arrivé !!'))
 
-
-
-
-        if choix == "Q":
+        elif choix == "Q":
             print(red_text("Merci de ne pas avoir joué!!"))
 
 
