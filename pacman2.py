@@ -37,7 +37,7 @@ def red_text(txt):
 
 # Generate a green colored text
 def green_text(txt):
-    return '\033[32;1m' + txt + '\033[0m'
+    return '\033[0;32m' + txt + '\033[0m'
 
 
 # Generate a blue colored text
@@ -163,6 +163,7 @@ if __name__ == "__main__":
         if choix == "J":
 
             gum = 0
+            ennemy = 0
             while True:
                 show_map(game_map)
                 print("Appuyez sur H(Haut), B(Bas), G(Gauche), D(Droite) ou Q pour quitter")
@@ -201,6 +202,7 @@ if __name__ == "__main__":
                         remove_ennemy_from_map(next_position)
                         move_pacman(current_position, next_position)
                         current_position = list(next_position)
+                        ennemy = ennemy + 1
                     else:
                         print(red_text("vous venez de rencontrer un ennemi sur votre chemin, vous etes mort!"))
                         break
@@ -209,13 +211,15 @@ if __name__ == "__main__":
                     print(green_text('MIAM!'))
                     gum = gum + 1
 
-                    if gum > 18:
+                    if gum < 18:
 
                         print("Vous avez mangé ", gum, "gums  ")
                     elif gum == 18:
                         print("Il ne vous reste qu'une gum à manger")
                     elif gum == 19:
                         print("Bravo vous avez collecté toutes les gums")
+                        print ("Bravo vous avez gagné.")
+                        print ("vous avez mangé",ennemy,"ennemis")
                         break
 
                     remove_gum_from_map(next_position)
@@ -240,6 +244,10 @@ if __name__ == "__main__":
                     print(red_text('Vous venez de sortir de la carte!'))
                 else:
                     print(debug_text('Quelque chose est arrivé !!'))
+
+
+
+
         if choix == "Q":
             print(red_text("Merci de ne pas avoir joué!!"))
 
