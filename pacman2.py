@@ -231,7 +231,6 @@ if __name__ == "__main__":
                     move_pacman(current_position, next_position)
                     current_position = list(next_position)
 
-
                 elif case == EMPTY:
                     print(pink_text('Nothing here, keep moving'))
                     # update PACMAN position
