@@ -141,24 +141,34 @@ def show_map(map):
 
     print()
 
-superpouvoir = 0  # Var superpouvoir init à 0 comme désact
+
 
 # Program starts here !
 if __name__ == "__main__":
 
     print(blue_text("Comment vous appelez-vous?"))
-    nom = input()
+    try:
+        nom = input()
+    except:
+        print("Merci de rentrez votre nom correctement")
 
     print(green_text("Quel age as-tu ?,%s" % nom))
-    age = int(input())
+    try:
+        age = int(input())
+    except:
+        print("La valeur de votre n'est pas comme toi monsieur le futur héro du numérique !")
 
     # Inital positions of PACMAN and ennemy
     current_position = [1, 1]
     enemy_position = [6, 4]
+    superpouvoir = 0  # Var superpouvoir init à 0 comme désact
 
     if age >= 12:
 
-        choix = input(pink_text("Appuyez sur J pour jouer ou Q pour quitter la partie")).upper()
+        try:
+            choix = input(pink_text("Appuyez sur J pour jouer ou Q pour quitter la partie")).upper()
+        except:
+            print("La valeur entrée est incorecte")
 
         if choix == "J":
 
@@ -199,7 +209,6 @@ if __name__ == "__main__":
 
                 elif case == ENNEMY:
                     if superpouvoir == 1:
-                        remove_ennemy_from_map(next_position)
                         move_pacman(current_position, next_position)
                         current_position = list(next_position)
                         ennemy = ennemy + 1
@@ -231,7 +240,7 @@ if __name__ == "__main__":
                     # TODO Deal with SUPERGUM effect
                     print(pink_text('Vous etes en possession invincible'))
                     # update PACMAN position
-                    superpouvoir == 1
+                    superpouvoir = 1
                     move_pacman(current_position, next_position)
                     current_position = list(next_position)
 
@@ -253,7 +262,8 @@ if __name__ == "__main__":
 
 
         else:
-            print("veuillez formuler une demande correcte!!")
+            print("Veuillez formuler une demande correcte!!")
+
 
 
     else:
