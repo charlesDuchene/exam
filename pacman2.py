@@ -217,7 +217,7 @@ if __name__ == "__main__":
                     elif gum == 18:
                         print("Il ne vous reste qu'une gum à manger")
                     elif gum == 19:
-                        print("Bravo vous avez collecté toutes les gums")
+                        
                         print ("Bravo vous avez gagné.")
                         print ("vous avez mangé",ennemy,"ennemis")
                         break
@@ -239,7 +239,7 @@ if __name__ == "__main__":
                     print(pink_text('Nothing here, keep moving'))
                     # update PACMAN position
                     move_pacman(current_position, next_position)
-                    pacman_position = list(next_position)
+                    current_position = list(next_position)
                 elif case == None:
                     print(red_text('Vous venez de sortir de la carte!'))
                 else:
