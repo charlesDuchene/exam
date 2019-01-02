@@ -198,7 +198,7 @@ if __name__ == "__main__":
                         print(red_text("Vous venez d'entrer dans un mur"))
 
                 elif case == ENNEMY:
-                    if superpouvoir = 1:
+                    if superpouvoir == 1:
                         remove_ennemy_from_map(next_position)
                         move_pacman(current_position, next_position)
                         current_position = list(next_position)
