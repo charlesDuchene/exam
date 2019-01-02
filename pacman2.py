@@ -157,6 +157,7 @@ if __name__ == "__main__":
         age = int(input())
     except:
         print("La valeur de votre n'est pas comme toi monsieur le futur héro du numérique !")
+        age = int(input())
 
     # Inital positions of PACMAN and ennemy
     current_position = [1, 1]
@@ -164,102 +165,87 @@ if __name__ == "__main__":
     superpouvoir = 0  # Var superpouvoir init à 0 comme désact
 
     if age >= 12:
-        try:
-            choix = input(pink_text("Appuyez sur J pour jouer ou Q pour quitter la partie")).upper()
-        except:
-            print("La valeur entrée est incorecte")
+        gum = 0
+        ennemy = 0
+        while True:
+            show_map(game_map)
+            print("Appuyez sur H(Haut), B(Bas), G(Gauche), D(Droite) ou Q pour quitter")
+            move = input('Votre déplacement ?').upper()
 
-        if choix == "J":
-            gum = 0
-            ennemy = 0
-            while True:
-                show_map(game_map)
-                print("Appuyez sur H(Haut), B(Bas), G(Gauche), D(Droite) ou Q pour quitter")
-                move = input('Votre déplacement ?').upper()
+            # We copy pacman_position in next_position
+            next_position = list(current_position)
+            # Update next_position
+            if move == 'G':
+                next_position[0] -= 1
+            elif move == 'D':
+                next_position[0] += 1
+            elif move == 'H':
+                next_position[1] -= 1
+            elif move == 'B':
+                next_position[1] += 1
+            elif move == "Q":
+                print("Merci d'avoir joué!")
+                break
+            else:
+                print('Commande incorrecte')
+                continue
 
-                # We copy pacman_position in next_position
-                next_position = list(current_position)
-                # Update next_position
-                if move == 'G':
-                    next_position[0] -= 1
-                elif move == 'D':
-                    next_position[0] += 1
-                elif move == 'H':
-                    next_position[1] -= 1
-                elif move == 'B':
-                    next_position[1] += 1
-                elif move == "Q":
-                    print("Merci d'avoir joué!")
+                # Depending of the content of the case, move PACMAN and take required actions
+            case = get_case_content(next_position)
+
+            if case == WALL:
+                if superpouvoir == 1:
+                    move_pacman(current_position, next_position)
+                    current_position = list(next_position)
+                else:
+                    print(red_text("Vous venez d'entrer dans un mur"))
+
+            elif case == ENNEMY:
+                if superpouvoir == 1:
+                    move_pacman(current_position, next_position)
+                    current_position = list(next_position)
+                    ennemy = ennemy + 1
+                else:
+                    print(red_text("vous venez de rencontrer un ennemi sur votre chemin, vous etes mort!"))
                     break
-                else:
-                    print('Commande incorrecte')
-                    continue
 
-                    # Depending of the content of the case, move PACMAN and take required actions
-                case = get_case_content(next_position)
+            elif case == GUM:
+                print(green_text('MIAM!'))
+                gum = gum + 1
 
-                if case == WALL:
-                    if superpouvoir == 1:
-                        move_pacman(current_position, next_position)
-                        current_position = list(next_position)
-                    else:
-                        print(red_text("Vous venez d'entrer dans un mur"))
+                if gum < 18:
 
-                elif case == ENNEMY:
-                    if superpouvoir == 1:
-                        move_pacman(current_position, next_position)
-                        current_position = list(next_position)
-                        ennemy = ennemy + 1
-                    else:
-                        print(red_text("vous venez de rencontrer un ennemi sur votre chemin, vous etes mort!"))
-                        break
+                    print("Vous avez mangé ", gum, "gums  ")
+                elif gum == 18:
+                    print("Il ne vous reste qu'une gum à manger")
+                elif gum == 19:
 
-                elif case == GUM:
-                    print(green_text('MIAM!'))
-                    gum = gum + 1
+                    print ("Bravo vous avez gagné.")
+                    print ("vous avez mangé",ennemy,"ennemis")
+                    break
 
-                    if gum < 18:
+                remove_gum_from_map(next_position)
+                # update PACMAN position
+                move_pacman(current_position, next_position)
+                current_position = list(next_position)
 
-                        print("Vous avez mangé ", gum, "gums  ")
-                    elif gum == 18:
-                        print("Il ne vous reste qu'une gum à manger")
-                    elif gum == 19:
-                        
-                        print ("Bravo vous avez gagné.")
-                        print ("vous avez mangé",ennemy,"ennemis")
-                        break
+            elif case == SUPERGUM:
+                # TODO Deal with SUPERGUM effect
+                print(pink_text('Vous etes en possession invincible'))
+                # update PACMAN position
+                superpouvoir = 1
+                move_pacman(current_position, next_position)
+                current_position = list(next_position)
 
-                    remove_gum_from_map(next_position)
-                    # update PACMAN position
-                    move_pacman(current_position, next_position)
-                    current_position = list(next_position)
-
-                elif case == SUPERGUM:
-                    # TODO Deal with SUPERGUM effect
-                    print(pink_text('Vous etes en possession invincible'))
-                    # update PACMAN position
-                    superpouvoir = 1
-                    move_pacman(current_position, next_position)
-                    current_position = list(next_position)
-
-                elif case == EMPTY:
-                    print(pink_text('Nothing here, keep moving'))
-                    # update PACMAN position
-                    move_pacman(current_position, next_position)
-                    current_position = list(next_position)
-                elif case == None:
-                    print(red_text('Vous venez de sortir de la carte!'))
-                else:
-                    print(debug_text('Quelque chose est arrivé !!'))
-
-        elif choix == "Q":
-            print(red_text("Merci de ne pas avoir joué!!"))
-
-
-        else:
-            print("Veuillez formuler une demande correcte!!")
-
-
+            elif case == EMPTY:
+                print(pink_text('Nothing here, keep moving'))
+                # update PACMAN position
+                move_pacman(current_position, next_position)
+                current_position = list(next_position)
+            elif case == None:
+                print(red_text('Vous venez de sortir de la carte!'))
+            else:
+                print(debug_text('Quelque chose est arrivé !!'))
 
     else:
         print(red_text("Tu n'as pas l'age minimum pour jouer au jeu!%s" % nom))
