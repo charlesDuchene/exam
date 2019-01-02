@@ -15,8 +15,8 @@
 game_map = """
 #########
 #C....o.#
-#.W.W.W.#
-#.W.W.W.#
+#.#.#.#.#
+#.#.#.#.#
 #......X#
 #########
 """
@@ -28,7 +28,7 @@ WALL = '#'
 SUPERGUM = 'o'
 GUM = '.'
 EMPTY = ' '
-WALL_IN = 'W'
+
 
 # Compute width and height of the map
 width = len(game_map.split('\n')[1])
@@ -230,7 +230,7 @@ if __name__ == "__main__":
                     # Depending of the content of the case, move PACMAN and take required actions
                 case = get_case_content(next_position)
 
-                if case == WALL_IN :
+                if case == WALL:
 
                     if superpouvoir == False:
                         print(red_text("Vous venez d'entrer dans un mur"))
