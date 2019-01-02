@@ -57,7 +57,8 @@ def pink_text(txt):
 
 #changement de couleurs si super gum
 
-
+def superpouvoir (position):
+    
 
 
 
@@ -92,6 +93,7 @@ def remove_gum_from_map(position):
     game_map_list[get_map_index(position)] = EMPTY
     # convert the list back to a string, that will be the updated game map
     game_map = "".join(game_map_list)
+
 
 def remove_ennemy_from_map(position):
 
