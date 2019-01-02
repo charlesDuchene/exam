@@ -191,7 +191,6 @@ if __name__ == "__main__":
 
                 if case == WALL:
                     if superpouvoir == 1:
-                        remove_wall(next_position)
                         move_pacman(current_position, next_position)
                         current_position = list(next_position)
                     else:
