@@ -120,7 +120,7 @@ def move_pacman(current_position, next_position):
     game_map_list[get_map_index(current_position)] = EMPTY
     # reconvertit la liste en chaîne, ce sera la carte du jeu mise à jour
     game_map_list[get_map_index(next_position)] = PACMAN
-    game_map = "".rejoindre(game_map_list)
+    game_map = "".join(game_map_list)
 
     # display the map, with fancy colors !
 
@@ -267,7 +267,7 @@ if __name__ == "__main__":
                     remove_gum_from_map(next_position)
                         # update PACMAN position
                     move_pacman(current_position,next_position)
-                    pacman_position = list(next_position)
+                    current_position = list(next_position)
 
                 elif case == SUPERGUM:
                         # TODO Deal with SUPERGUM effect
