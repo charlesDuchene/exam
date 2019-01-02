@@ -86,7 +86,7 @@ def remove_gum_from_map(position):
     game_map = "".join(game_map_list)
 
 
-def remove_ennemy_from_map(position):
+"""def remove_ennemy_from_map(position):
     global game_map
 
     if get_case_content(position) != ENNEMY:
@@ -97,7 +97,7 @@ def remove_ennemy_from_map(position):
     # remove the gum (put the empty char at the position of the gum)
     game_map_list[get_map_index(position)] = EMPTY
     # convert the list back to a string, that will be the updated game map
-    game_map = "".join(game_map_list)
+    game_map = "".join(game_map_list)"""
 
 
 # move pacman at new position in the map
@@ -198,12 +198,13 @@ if __name__ == "__main__":
                         print(red_text("Vous venez d'entrer dans un mur"))
 
                 elif case == ENNEMY:
-                    if superpouvoir = 1:
+                    if superpouvoir == 1:
                         remove_ennemy_from_map(next_position)
                         move_pacman(current_position, next_position)
                         current_position = list(next_position)
                     else:
                         print(red_text("vous venez de rencontrer un ennemi sur votre chemin, vous etes mort!"))
+                        break
 
                 elif case == GUM:
                     print(green_text('MIAM!'))
@@ -227,7 +228,7 @@ if __name__ == "__main__":
                     # TODO Deal with SUPERGUM effect
                     print(pink_text('Vous etes en possession invincible'))
                     # update PACMAN position
-                    superpouvoir = 1
+                    superpouvoir == 1
                     move_pacman(current_position, next_position)
                     current_position = list(next_position)
 
