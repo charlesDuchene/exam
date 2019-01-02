@@ -67,7 +67,11 @@ def get_map_index(position):
 # return the character in the game_map at given coordinates
 def get_case_content(position):
     # TODO check if position goes outside of the map, return None in that case
-    return game_map[get_map_index(position)]
+    global height, width
+    if position[1] > height or position[0] > width or position[0] < 0 or position[1] < 0:
+        return None
+    else:
+        return game_map[get_map_index(position)]
 
 
 # remove a gum of the map
