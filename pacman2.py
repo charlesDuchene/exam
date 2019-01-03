@@ -161,7 +161,7 @@ if __name__ == "__main__":
     except:
         print("Merci de rentrer votre nom correctement")
 
-    print(blue_text("Quel age as-tu ? : %s" % nom))
+    print(blue_text("Quel age as-tu %s : " % nom))
     try:
         age = int(input())
     except:
