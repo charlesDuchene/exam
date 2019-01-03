@@ -236,7 +236,7 @@ if __name__ == "__main__":
                 elif gum == 18:
 
                     print (pink_text("Bravo vous avez gagné."))
-                    print (green_text("vous avez mangé",ennemy,"ennemis"))
+                    print (green_text("vous avez mangé"), green_text(str(ennemy)), green_text("ennemies"))
                     break
 
                 remove_gum_from_map(next_position)
