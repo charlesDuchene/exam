@@ -80,7 +80,7 @@ def remove_gum_from_map(position):
     global game_map
 
     if get_case_content(position) != GUM:
-        print(debug_text('ERROR: trying to remove a non-existing gum'))
+        #print(debug_text('ERROR: trying to remove a non-existing gum'))
         return
 
     # convert the map into a list (so that we can change a character !)
@@ -89,21 +89,6 @@ def remove_gum_from_map(position):
     game_map_list[get_map_index(position)] = EMPTY
     # convert the list back to a string, that will be the updated game map
     game_map = "".join(game_map_list)
-
-
-"""def remove_ennemy_from_map(position):
-    global game_map
-
-    if get_case_content(position) != ENNEMY:
-        print(debug_text('ERROR : tring to remove a non-existing ennemy'))
-        return
-        # convert the map into a list (so that we can change a character !)
-    game_map_list = list(game_map)
-    # remove the gum (put the empty char at the position of the gum)
-    game_map_list[get_map_index(position)] = EMPTY
-    # convert the list back to a string, that will be the updated game map
-    game_map = "".join(game_map_list)"""
-
 
 # move pacman at new position in the map
 def move_pacman(current_position, next_position):
@@ -162,11 +147,11 @@ if __name__ == "__main__":
         print("Merci de rentrer votre nom correctement")
 
     print(blue_text("Quel age as-tu %s : " % nom))
+
     try:
         age = int(input())
     except:
         print("La valeur n'est pas correcte  !")
-        age = int(input())
 
     # Inital positions of PACMAN and ennemy
     current_position = [1, 1]
@@ -202,7 +187,6 @@ if __name__ == "__main__":
 
                 # Depending of the content of the case, move PACMAN and take required actions
             case = get_case_content(next_position)
-            print("debug : ", case)
             if case == WALL:
                 if bombe == 1:
                     move_pacman(current_position, next_position)
