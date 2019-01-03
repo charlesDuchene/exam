@@ -169,7 +169,8 @@ if __name__ == "__main__":
     # Inital positions of PACMAN and ennemy
     current_position = [1, 1]
     enemy_position = [6, 4]
-    superpouvoir = 0  # Var superpouvoir init à 0 comme désact
+    superpouvoir = 0
+    bombe = 0
 
     if age >= 12:
         gum = 0
