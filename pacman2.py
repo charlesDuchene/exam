@@ -10,7 +10,7 @@
 game_map = """
 #########
 #C....o.#
-#.#.#.#.#
+#.#B#.#.#
 #.#.#.#.#
 #......X#
 #########
@@ -23,6 +23,7 @@ WALL = '#'
 SUPERGUM = 'o'
 GUM = '.'
 EMPTY = ' '
+BOMBE ='B'
 
 # Compute width and height of the map
 width = len(game_map.split('\n')[1])
@@ -205,7 +206,7 @@ if __name__ == "__main__":
             case = get_case_content(next_position)
 
             if case == WALL:
-                if superpouvoir == 1:
+                if bombe == 1:
                     move_pacman(current_position, next_position)
                     current_position = list(next_position)
                 else:
@@ -219,6 +220,11 @@ if __name__ == "__main__":
                 else:
                     print(red_text("vous venez de rencontrer un ennemi sur votre chemin, vous etes mort!"))
                     break
+            elif case == BOMBE :
+                print(red_text('Vous pouvez manger les murs'))
+                bombe = 1
+                move_pacman(current_position, next_position)
+                current_position = list(next_position)
 
             elif case == GUM:
                 print(green_text('MIAM!'))
