@@ -170,7 +170,7 @@ if __name__ == "__main__":
     current_position = [1, 1]
     enemy_position = [6, 4]
     superpouvoir = 0  # Var superpouvoir init à 0 comme désact
-
+    bombe = 0
     if age >= 12:
         gum = 0
         ennemy = 0
