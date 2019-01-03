@@ -126,10 +126,11 @@ def move_pacman(current_position, next_position):
 def show_map(map):
     # for each char of the map
     for char in map:
-        if char == BOMBE :
-            print (blue_text(char),end='')
+
         if char == WALL:
             print(char, end='')
+        elif char == BOMBE:
+            print (blue_text(char),end='')
         elif char == ENNEMY:
             if superpouvoir == 1:
                 print(pink_text(char), end='')
@@ -154,17 +155,17 @@ def show_map(map):
 # Program starts here !
 if __name__ == "__main__":
 
-    print(green_text("Comment vous appelez-vous?"))
+    print(green_text("Comment vous appelez-vous ? : "))
     try:
         nom = input()
     except:
-        print("Merci de rentrez votre nom correctement")
+        print("Merci de rentrer votre nom correctement")
 
-    print(blue_text("Quel age as-tu ?,%s" % nom))
+    print(blue_text("Quel age as-tu ? : %s" % nom))
     try:
         age = int(input())
     except:
-        print("La valeur de votre n'est pas comme toi monsieur le futur héro du numérique !")
+        print("La valeur n'est pas correcte  !")
         age = int(input())
 
     # Inital positions of PACMAN and ennemy
@@ -262,7 +263,7 @@ if __name__ == "__main__":
                 print(debug_text('Quelque chose est arrivé !!'))
 
     else:
-        print(red_text("Tu n'as pas l'age minimum pour jouer au jeu!%s" % nom))
+        print(red_text("Tu n'as pas l'age minimum pour jouer au jeu ! %s" % nom))
         # TODO Check is game is finished, in that case display some messages
 
         # TODO Make the ennemy move
