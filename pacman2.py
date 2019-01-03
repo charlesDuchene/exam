@@ -69,7 +69,7 @@ def get_map_index(position):
 def get_case_content(position):
     # TODO check if position goes outside of the map, return None in that case
     global height, width
-    if position[1] > height or position[0] > width or position[0] < 0 or position[1] < 0:
+    if position[1] >= height or position[0] >= width or position[0] < 0 or position[1] < 0:
         return None
     else:
         return game_map[get_map_index(position)]
@@ -118,12 +118,7 @@ def move_pacman(current_position, next_position):
     game_map_list[get_map_index(next_position)] = PACMAN
     game_map = "".join(game_map_list)
 
-    # display the map, with fancy colors !
 
-    # TODO : complete this function (you can get inspired by remove_gum_from_map)
-    # You will need the two parameters of the function
-    # current_position is PACMAN's current position in the map
-    # next_position is PACMAN's next position (after move)
     print(debug_text('we are now moving PACMAN'))
 
 
@@ -204,7 +199,7 @@ if __name__ == "__main__":
 
                 # Depending of the content of the case, move PACMAN and take required actions
             case = get_case_content(next_position)
-
+            print("debug : ", case)
             if case == WALL:
                 if bombe == 1:
                     move_pacman(current_position, next_position)
