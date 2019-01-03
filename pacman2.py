@@ -126,7 +126,8 @@ def move_pacman(current_position, next_position):
 def show_map(map):
     # for each char of the map
     for char in map:
-
+        if char == BOMBE :
+            print (blue_text(char),end='')
         if char == WALL:
             print(char, end='')
         elif char == ENNEMY:
@@ -153,13 +154,13 @@ def show_map(map):
 # Program starts here !
 if __name__ == "__main__":
 
-    print(blue_text("Comment vous appelez-vous?"))
+    print(green_text("Comment vous appelez-vous?"))
     try:
         nom = input()
     except:
         print("Merci de rentrez votre nom correctement")
 
-    print(green_text("Quel age as-tu ?,%s" % nom))
+    print(blue_text("Quel age as-tu ?,%s" % nom))
     try:
         age = int(input())
     except:
@@ -226,15 +227,15 @@ if __name__ == "__main__":
                 print(green_text('MIAM!'))
                 gum = gum + 1
 
-                if gum < 18:
+                if gum < 17:
 
                     print("Vous avez mangé ", gum, "gums  ")
-                elif gum == 18:
+                elif gum == 17:
                     print("Il ne vous reste qu'une gum à manger")
-                elif gum == 19:
+                elif gum == 18:
 
-                    print ("Bravo vous avez gagné.")
-                    print ("vous avez mangé",ennemy,"ennemis")
+                    print (pink_text("Bravo vous avez gagné."))
+                    print (green_text("vous avez mangé",ennemy,"ennemis"))
                     break
 
                 remove_gum_from_map(next_position)
